@@ -1,4 +1,4 @@
-package core;
+package internal;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClient;

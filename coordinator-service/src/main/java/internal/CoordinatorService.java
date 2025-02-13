@@ -1,4 +1,4 @@
-package core;
+package internal;
 
 
 import grpc.*;
@@ -12,6 +12,8 @@ public class CoordinatorService extends CoordinatorServiceGrpc.CoordinatorServic
 
     @Override
     public void sendHeartBeat(HeartBeatRequest request, StreamObserver<HeartBeatResponse> responseObserver) {
-
+            HeartBeatResponse.Builder response = HeartBeatResponse.newBuilder().setAcknowledge(true);
+            responseObserver.onNext(response.build());
+            responseObserver.onCompleted();
     }
 }
