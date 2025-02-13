@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option java_package = "grpc";
+option java_multiple_files = true;
+
+service CoordinatorService {
+  rpc updateTask(UpdateTaskRequest) returns (UpdateTaskResponse);
+  rpc sendHeartBeat(HeartBeatRequest) returns (HeartBeatResponse);
+}
+
+message UpdateTaskRequest {
+  uint64 taskId = 1;
+  string taskStatus = 2;
+}
+
+message UpdateTaskResponse {
+  uint64 taskId = 1;
+  string message = 2;
+  bool success = 3;
+}
+
+message HeartBeatRequest {
+  uint64 workerId = 1;
+}
+
+message HeartBeatResponse {
+  bool acknowledge = 1;
+}
