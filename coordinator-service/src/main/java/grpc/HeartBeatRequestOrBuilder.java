@@ -12,4 +12,28 @@ public interface HeartBeatRequestOrBuilder extends
    * @return The workerId.
    */
   long getWorkerId();
+
+  /**
+   * <code>string hostname = 2;</code>
+   * @return The hostname.
+   */
+  java.lang.String getHostname();
+  /**
+   * <code>string hostname = 2;</code>
+   * @return The bytes for hostname.
+   */
+  com.google.protobuf.ByteString
+      getHostnameBytes();
+
+  /**
+   * <code>string port = 3;</code>
+   * @return The port.
+   */
+  java.lang.String getPort();
+  /**
+   * <code>string port = 3;</code>
+   * @return The bytes for port.
+   */
+  com.google.protobuf.ByteString
+      getPortBytes();
 }

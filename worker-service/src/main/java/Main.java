@@ -1,6 +1,5 @@
 import grpc.CoordinatorServiceGrpc;
-import grpc.HeartBeatRequest;
-import grpc.HeartBeatResponse;
+import internal.WorkerServer;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import org.slf4j.Logger;
@@ -14,11 +13,8 @@ public class Main {
 
         CoordinatorServiceGrpc.CoordinatorServiceBlockingStub stub = CoordinatorServiceGrpc.newBlockingStub(channel);
 
-        HeartBeatRequest.Builder request = HeartBeatRequest.newBuilder().setWorkerId(1);
-
-        HeartBeatResponse response = stub.sendHeartBeat(request.build());
-
-        logger.info("response is  {}", response);
-
+        logger.info("stub info : {}", stub.getChannel().toString());
+        WorkerServer workerServer = new WorkerServer(stub);
+        workerServer.start();
     }
 }

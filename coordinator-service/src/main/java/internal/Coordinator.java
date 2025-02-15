@@ -36,7 +36,8 @@ public class Coordinator {
 
     public void manageWorkerPool() {
         try {
-           // every periodic time, we will recieve heartbeats of  WorkerServer
+           // every periodic time, we will receive heartbeats of  WorkerServer
+
         } catch (Exception ex) {
 
         }

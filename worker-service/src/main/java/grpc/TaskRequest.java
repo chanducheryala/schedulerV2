@@ -4,27 +4,26 @@
 package grpc;
 
 /**
- * Protobuf type {@code HeartBeatRequest}
+ * Protobuf type {@code TaskRequest}
  */
-public  final class HeartBeatRequest extends
+public  final class TaskRequest extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:HeartBeatRequest)
-    HeartBeatRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:TaskRequest)
+    TaskRequestOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use HeartBeatRequest.newBuilder() to construct.
-  private HeartBeatRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use TaskRequest.newBuilder() to construct.
+  private TaskRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private HeartBeatRequest() {
-    hostname_ = "";
-    port_ = "";
+  private TaskRequest() {
+    data_ = "";
   }
 
   @java.lang.Override
   @SuppressWarnings({"unused"})
   protected java.lang.Object newInstance(
       UnusedPrivateParameter unused) {
-    return new HeartBeatRequest();
+    return new TaskRequest();
   }
 
   @java.lang.Override
@@ -32,7 +31,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private HeartBeatRequest(
+  private TaskRequest(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -52,19 +51,13 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            workerId_ = input.readUInt64();
+            taskId_ = input.readUInt64();
             break;
           }
           case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            hostname_ = s;
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            port_ = s;
+            data_ = s;
             break;
           }
           default: {
@@ -88,93 +81,57 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return grpc.Coordinator.internal_static_HeartBeatRequest_descriptor;
+    return grpc.Coordinator.internal_static_TaskRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return grpc.Coordinator.internal_static_HeartBeatRequest_fieldAccessorTable
+    return grpc.Coordinator.internal_static_TaskRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            grpc.HeartBeatRequest.class, grpc.HeartBeatRequest.Builder.class);
+            grpc.TaskRequest.class, grpc.TaskRequest.Builder.class);
   }
 
-  public static final int WORKERID_FIELD_NUMBER = 1;
-  private long workerId_;
+  public static final int TASKID_FIELD_NUMBER = 1;
+  private long taskId_;
   /**
-   * <code>uint64 workerId = 1;</code>
-   * @return The workerId.
+   * <code>uint64 taskId = 1;</code>
+   * @return The taskId.
    */
-  public long getWorkerId() {
-    return workerId_;
+  public long getTaskId() {
+    return taskId_;
   }
 
-  public static final int HOSTNAME_FIELD_NUMBER = 2;
-  private volatile java.lang.Object hostname_;
+  public static final int DATA_FIELD_NUMBER = 2;
+  private volatile java.lang.Object data_;
   /**
-   * <code>string hostname = 2;</code>
-   * @return The hostname.
+   * <code>string data = 2;</code>
+   * @return The data.
    */
-  public java.lang.String getHostname() {
-    java.lang.Object ref = hostname_;
+  public java.lang.String getData() {
+    java.lang.Object ref = data_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      hostname_ = s;
+      data_ = s;
       return s;
     }
   }
   /**
-   * <code>string hostname = 2;</code>
-   * @return The bytes for hostname.
+   * <code>string data = 2;</code>
+   * @return The bytes for data.
    */
   public com.google.protobuf.ByteString
-      getHostnameBytes() {
-    java.lang.Object ref = hostname_;
+      getDataBytes() {
+    java.lang.Object ref = data_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      hostname_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int PORT_FIELD_NUMBER = 3;
-  private volatile java.lang.Object port_;
-  /**
-   * <code>string port = 3;</code>
-   * @return The port.
-   */
-  public java.lang.String getPort() {
-    java.lang.Object ref = port_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      port_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string port = 3;</code>
-   * @return The bytes for port.
-   */
-  public com.google.protobuf.ByteString
-      getPortBytes() {
-    java.lang.Object ref = port_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      port_ = b;
+      data_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -195,14 +152,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (workerId_ != 0L) {
-      output.writeUInt64(1, workerId_);
+    if (taskId_ != 0L) {
+      output.writeUInt64(1, taskId_);
     }
-    if (!getHostnameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, hostname_);
-    }
-    if (!getPortBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, port_);
+    if (!getDataBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, data_);
     }
     unknownFields.writeTo(output);
   }
@@ -213,15 +167,12 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (workerId_ != 0L) {
+    if (taskId_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeUInt64Size(1, workerId_);
+        .computeUInt64Size(1, taskId_);
     }
-    if (!getHostnameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, hostname_);
-    }
-    if (!getPortBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, port_);
+    if (!getDataBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, data_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -233,17 +184,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof grpc.HeartBeatRequest)) {
+    if (!(obj instanceof grpc.TaskRequest)) {
       return super.equals(obj);
     }
-    grpc.HeartBeatRequest other = (grpc.HeartBeatRequest) obj;
+    grpc.TaskRequest other = (grpc.TaskRequest) obj;
 
-    if (getWorkerId()
-        != other.getWorkerId()) return false;
-    if (!getHostname()
-        .equals(other.getHostname())) return false;
-    if (!getPort()
-        .equals(other.getPort())) return false;
+    if (getTaskId()
+        != other.getTaskId()) return false;
+    if (!getData()
+        .equals(other.getData())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -255,81 +204,79 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + WORKERID_FIELD_NUMBER;
+    hash = (37 * hash) + TASKID_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-        getWorkerId());
-    hash = (37 * hash) + HOSTNAME_FIELD_NUMBER;
-    hash = (53 * hash) + getHostname().hashCode();
-    hash = (37 * hash) + PORT_FIELD_NUMBER;
-    hash = (53 * hash) + getPort().hashCode();
+        getTaskId());
+    hash = (37 * hash) + DATA_FIELD_NUMBER;
+    hash = (53 * hash) + getData().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static grpc.HeartBeatRequest parseFrom(
+  public static grpc.TaskRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.HeartBeatRequest parseFrom(
+  public static grpc.TaskRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.HeartBeatRequest parseFrom(
+  public static grpc.TaskRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.HeartBeatRequest parseFrom(
+  public static grpc.TaskRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.HeartBeatRequest parseFrom(byte[] data)
+  public static grpc.TaskRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.HeartBeatRequest parseFrom(
+  public static grpc.TaskRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.HeartBeatRequest parseFrom(java.io.InputStream input)
+  public static grpc.TaskRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.HeartBeatRequest parseFrom(
+  public static grpc.TaskRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.HeartBeatRequest parseDelimitedFrom(java.io.InputStream input)
+  public static grpc.TaskRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static grpc.HeartBeatRequest parseDelimitedFrom(
+  public static grpc.TaskRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.HeartBeatRequest parseFrom(
+  public static grpc.TaskRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.HeartBeatRequest parseFrom(
+  public static grpc.TaskRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -342,7 +289,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(grpc.HeartBeatRequest prototype) {
+  public static Builder newBuilder(grpc.TaskRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -358,26 +305,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code HeartBeatRequest}
+   * Protobuf type {@code TaskRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:HeartBeatRequest)
-      grpc.HeartBeatRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:TaskRequest)
+      grpc.TaskRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return grpc.Coordinator.internal_static_HeartBeatRequest_descriptor;
+      return grpc.Coordinator.internal_static_TaskRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return grpc.Coordinator.internal_static_HeartBeatRequest_fieldAccessorTable
+      return grpc.Coordinator.internal_static_TaskRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              grpc.HeartBeatRequest.class, grpc.HeartBeatRequest.Builder.class);
+              grpc.TaskRequest.class, grpc.TaskRequest.Builder.class);
     }
 
-    // Construct using grpc.HeartBeatRequest.newBuilder()
+    // Construct using grpc.TaskRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -395,11 +342,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      workerId_ = 0L;
+      taskId_ = 0L;
 
-      hostname_ = "";
-
-      port_ = "";
+      data_ = "";
 
       return this;
     }
@@ -407,17 +352,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return grpc.Coordinator.internal_static_HeartBeatRequest_descriptor;
+      return grpc.Coordinator.internal_static_TaskRequest_descriptor;
     }
 
     @java.lang.Override
-    public grpc.HeartBeatRequest getDefaultInstanceForType() {
-      return grpc.HeartBeatRequest.getDefaultInstance();
+    public grpc.TaskRequest getDefaultInstanceForType() {
+      return grpc.TaskRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public grpc.HeartBeatRequest build() {
-      grpc.HeartBeatRequest result = buildPartial();
+    public grpc.TaskRequest build() {
+      grpc.TaskRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -425,11 +370,10 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public grpc.HeartBeatRequest buildPartial() {
-      grpc.HeartBeatRequest result = new grpc.HeartBeatRequest(this);
-      result.workerId_ = workerId_;
-      result.hostname_ = hostname_;
-      result.port_ = port_;
+    public grpc.TaskRequest buildPartial() {
+      grpc.TaskRequest result = new grpc.TaskRequest(this);
+      result.taskId_ = taskId_;
+      result.data_ = data_;
       onBuilt();
       return result;
     }
@@ -468,25 +412,21 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof grpc.HeartBeatRequest) {
-        return mergeFrom((grpc.HeartBeatRequest)other);
+      if (other instanceof grpc.TaskRequest) {
+        return mergeFrom((grpc.TaskRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(grpc.HeartBeatRequest other) {
-      if (other == grpc.HeartBeatRequest.getDefaultInstance()) return this;
-      if (other.getWorkerId() != 0L) {
-        setWorkerId(other.getWorkerId());
+    public Builder mergeFrom(grpc.TaskRequest other) {
+      if (other == grpc.TaskRequest.getDefaultInstance()) return this;
+      if (other.getTaskId() != 0L) {
+        setTaskId(other.getTaskId());
       }
-      if (!other.getHostname().isEmpty()) {
-        hostname_ = other.hostname_;
-        onChanged();
-      }
-      if (!other.getPort().isEmpty()) {
-        port_ = other.port_;
+      if (!other.getData().isEmpty()) {
+        data_ = other.data_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -504,11 +444,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      grpc.HeartBeatRequest parsedMessage = null;
+      grpc.TaskRequest parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (grpc.HeartBeatRequest) e.getUnfinishedMessage();
+        parsedMessage = (grpc.TaskRequest) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -518,184 +458,108 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private long workerId_ ;
+    private long taskId_ ;
     /**
-     * <code>uint64 workerId = 1;</code>
-     * @return The workerId.
+     * <code>uint64 taskId = 1;</code>
+     * @return The taskId.
      */
-    public long getWorkerId() {
-      return workerId_;
+    public long getTaskId() {
+      return taskId_;
     }
     /**
-     * <code>uint64 workerId = 1;</code>
-     * @param value The workerId to set.
+     * <code>uint64 taskId = 1;</code>
+     * @param value The taskId to set.
      * @return This builder for chaining.
      */
-    public Builder setWorkerId(long value) {
+    public Builder setTaskId(long value) {
       
-      workerId_ = value;
+      taskId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>uint64 workerId = 1;</code>
+     * <code>uint64 taskId = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearWorkerId() {
+    public Builder clearTaskId() {
       
-      workerId_ = 0L;
+      taskId_ = 0L;
       onChanged();
       return this;
     }
 
-    private java.lang.Object hostname_ = "";
+    private java.lang.Object data_ = "";
     /**
-     * <code>string hostname = 2;</code>
-     * @return The hostname.
+     * <code>string data = 2;</code>
+     * @return The data.
      */
-    public java.lang.String getHostname() {
-      java.lang.Object ref = hostname_;
+    public java.lang.String getData() {
+      java.lang.Object ref = data_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        hostname_ = s;
+        data_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string hostname = 2;</code>
-     * @return The bytes for hostname.
+     * <code>string data = 2;</code>
+     * @return The bytes for data.
      */
     public com.google.protobuf.ByteString
-        getHostnameBytes() {
-      java.lang.Object ref = hostname_;
+        getDataBytes() {
+      java.lang.Object ref = data_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        hostname_ = b;
+        data_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string hostname = 2;</code>
-     * @param value The hostname to set.
+     * <code>string data = 2;</code>
+     * @param value The data to set.
      * @return This builder for chaining.
      */
-    public Builder setHostname(
+    public Builder setData(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      hostname_ = value;
+      data_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string hostname = 2;</code>
+     * <code>string data = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearHostname() {
+    public Builder clearData() {
       
-      hostname_ = getDefaultInstance().getHostname();
+      data_ = getDefaultInstance().getData();
       onChanged();
       return this;
     }
     /**
-     * <code>string hostname = 2;</code>
-     * @param value The bytes for hostname to set.
+     * <code>string data = 2;</code>
+     * @param value The bytes for data to set.
      * @return This builder for chaining.
      */
-    public Builder setHostnameBytes(
+    public Builder setDataBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      hostname_ = value;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object port_ = "";
-    /**
-     * <code>string port = 3;</code>
-     * @return The port.
-     */
-    public java.lang.String getPort() {
-      java.lang.Object ref = port_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        port_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
-    }
-    /**
-     * <code>string port = 3;</code>
-     * @return The bytes for port.
-     */
-    public com.google.protobuf.ByteString
-        getPortBytes() {
-      java.lang.Object ref = port_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        port_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string port = 3;</code>
-     * @param value The port to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPort(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      port_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string port = 3;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearPort() {
-      
-      port_ = getDefaultInstance().getPort();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string port = 3;</code>
-     * @param value The bytes for port to set.
-     * @return This builder for chaining.
-     */
-    public Builder setPortBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      port_ = value;
+      data_ = value;
       onChanged();
       return this;
     }
@@ -712,41 +576,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:HeartBeatRequest)
+    // @@protoc_insertion_point(builder_scope:TaskRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:HeartBeatRequest)
-  private static final grpc.HeartBeatRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:TaskRequest)
+  private static final grpc.TaskRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new grpc.HeartBeatRequest();
+    DEFAULT_INSTANCE = new grpc.TaskRequest();
   }
 
-  public static grpc.HeartBeatRequest getDefaultInstance() {
+  public static grpc.TaskRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<HeartBeatRequest>
-      PARSER = new com.google.protobuf.AbstractParser<HeartBeatRequest>() {
+  private static final com.google.protobuf.Parser<TaskRequest>
+      PARSER = new com.google.protobuf.AbstractParser<TaskRequest>() {
     @java.lang.Override
-    public HeartBeatRequest parsePartialFrom(
+    public TaskRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new HeartBeatRequest(input, extensionRegistry);
+      return new TaskRequest(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<HeartBeatRequest> parser() {
+  public static com.google.protobuf.Parser<TaskRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<HeartBeatRequest> getParserForType() {
+  public com.google.protobuf.Parser<TaskRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public grpc.HeartBeatRequest getDefaultInstanceForType() {
+  public grpc.TaskRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

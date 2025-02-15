@@ -1,3 +1,4 @@
+import internal.Coordinator;
 import internal.CoordinatorService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -13,6 +14,9 @@ public class Main {
         Server server = ServerBuilder.forPort(9000).addService(new CoordinatorService()).build();
         server.start();
         logger.info("gRpc server running at 9000");
+
+        Coordinator coordinator = new Coordinator();
+        coordinator.start();
         server.awaitTermination();
     }
 }

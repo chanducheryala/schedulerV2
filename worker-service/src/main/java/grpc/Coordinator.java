@@ -15,6 +15,16 @@ public final class Coordinator {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TaskRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TaskRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_TaskResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_TaskResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_UpdateTaskRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -43,41 +53,59 @@ public final class Coordinator {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\021coordinator.proto\"7\n\021UpdateTaskRequest" +
-      "\022\016\n\006taskId\030\001 \001(\004\022\022\n\ntaskStatus\030\002 \001(\t\"F\n\022" +
-      "UpdateTaskResponse\022\016\n\006taskId\030\001 \001(\004\022\017\n\007me" +
-      "ssage\030\002 \001(\t\022\017\n\007success\030\003 \001(\010\"$\n\020HeartBea" +
-      "tRequest\022\020\n\010workerId\030\001 \001(\004\"(\n\021HeartBeatR" +
-      "esponse\022\023\n\013acknowledge\030\001 \001(\0102\203\001\n\022Coordin" +
-      "atorService\0225\n\nupdateTask\022\022.UpdateTaskRe" +
-      "quest\032\023.UpdateTaskResponse\0226\n\rsendHeartB" +
-      "eat\022\021.HeartBeatRequest\032\022.HeartBeatRespon" +
-      "seB\010\n\004grpcP\001b\006proto3"
+      "\n\021coordinator.proto\"+\n\013TaskRequest\022\016\n\006ta" +
+      "skId\030\001 \001(\004\022\014\n\004data\030\002 \001(\t\";\n\014TaskResponse" +
+      "\022\016\n\006taskId\030\001 \001(\004\022\033\n\006status\030\002 \001(\0162\013.TaskS" +
+      "tatus\"7\n\021UpdateTaskRequest\022\016\n\006taskId\030\001 \001" +
+      "(\004\022\022\n\ntaskStatus\030\002 \001(\t\"F\n\022UpdateTaskResp" +
+      "onse\022\016\n\006taskId\030\001 \001(\004\022\017\n\007message\030\002 \001(\t\022\017\n" +
+      "\007success\030\003 \001(\010\"D\n\020HeartBeatRequest\022\020\n\010wo" +
+      "rkerId\030\001 \001(\004\022\020\n\010hostname\030\002 \001(\t\022\014\n\004port\030\003" +
+      " \001(\t\"(\n\021HeartBeatResponse\022\023\n\013acknowledge" +
+      "\030\001 \001(\010*4\n\nTaskStatus\022\013\n\007PENDING\020\000\022\r\n\tCOM" +
+      "PLETED\020\001\022\n\n\006FAILED\020\0032\203\001\n\022CoordinatorServ" +
+      "ice\0225\n\nupdateTask\022\022.UpdateTaskRequest\032\023." +
+      "UpdateTaskResponse\0226\n\rsendHeartBeat\022\021.He" +
+      "artBeatRequest\032\022.HeartBeatResponse28\n\rWo" +
+      "rkerService\022\'\n\010sendTask\022\014.TaskRequest\032\r." +
+      "TaskResponseB\010\n\004grpcP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_UpdateTaskRequest_descriptor =
+    internal_static_TaskRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_TaskRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TaskRequest_descriptor,
+        new java.lang.String[] { "TaskId", "Data", });
+    internal_static_TaskResponse_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_TaskResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_TaskResponse_descriptor,
+        new java.lang.String[] { "TaskId", "Status", });
+    internal_static_UpdateTaskRequest_descriptor =
+      getDescriptor().getMessageTypes().get(2);
     internal_static_UpdateTaskRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateTaskRequest_descriptor,
         new java.lang.String[] { "TaskId", "TaskStatus", });
     internal_static_UpdateTaskResponse_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_UpdateTaskResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_UpdateTaskResponse_descriptor,
         new java.lang.String[] { "TaskId", "Message", "Success", });
     internal_static_HeartBeatRequest_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_HeartBeatRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HeartBeatRequest_descriptor,
-        new java.lang.String[] { "WorkerId", });
+        new java.lang.String[] { "WorkerId", "Hostname", "Port", });
     internal_static_HeartBeatResponse_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_HeartBeatResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_HeartBeatResponse_descriptor,

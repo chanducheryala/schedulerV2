@@ -8,6 +8,26 @@ service CoordinatorService {
   rpc sendHeartBeat(HeartBeatRequest) returns (HeartBeatResponse);
 }
 
+service WorkerService {
+  rpc sendTask(TaskRequest) returns (TaskResponse);
+}
+
+enum TaskStatus {
+  PENDING = 0;
+  COMPLETED = 1;
+  FAILED = 3;
+}
+
+message TaskRequest {
+  uint64 taskId = 1;
+  string data = 2;
+}
+
+message TaskResponse {
+  uint64 taskId = 1;
+  TaskStatus status = 2;
+}
+
 message UpdateTaskRequest {
   uint64 taskId = 1;
   string taskStatus = 2;
@@ -21,8 +41,9 @@ message UpdateTaskResponse {
 
 message HeartBeatRequest {
   uint64 workerId = 1;
+  string hostname = 2;
+  string port = 3;
 }
-
 message HeartBeatResponse {
   bool acknowledge = 1;
 }
