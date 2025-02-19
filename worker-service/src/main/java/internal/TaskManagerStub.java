@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 public class TaskManagerStub {
     private static final Logger logger = LoggerFactory.getLogger(TaskManagerStub.class);
     private static final String HOSTNAME = "127.0.0.1";
-    private static final int TASK_MANAGER_PORT = 9090;
+    private static final int TASK_MANAGER_PORT = 9000;
 
     private TaskManagerServiceGrpc.TaskManagerServiceBlockingStub stub;
 

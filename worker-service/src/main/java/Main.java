@@ -22,7 +22,7 @@ public class Main {
         WorkerPool workerPool = new WorkerPool();
         workerPool.startWorkerPool();
 
-        WorkerHeartBeat workerHeartBeat = new WorkerHeartBeat(taskManagerStub);
+        WorkerHeartBeat workerHeartBeat = new WorkerHeartBeat(taskManagerStub, workerGrpcServer);
         workerHeartBeat.periodicHeartBeat();
     }
 }

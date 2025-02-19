@@ -10,6 +10,8 @@ import java.io.IOException;
 public class WorkerGrpcServer {
     private static final Logger logger = LoggerFactory.getLogger(WorkerGrpcServer.class);
     private final Server server;
+    private final String host = "127.0.0.1";
+    private int port;
 
     public WorkerGrpcServer() {
         this.server = ServerBuilder
@@ -21,6 +23,7 @@ public class WorkerGrpcServer {
     public void start() {
         try {
             server.start();
+            this.setPort();
             logger.info("Worker gRPC server is running");
             Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
         } catch (IOException e) {
@@ -33,6 +36,18 @@ public class WorkerGrpcServer {
             server.shutdown();
             logger.info("Worker gRPC server stopped.");
         }
+    }
+    
+    public int getPort() {
+        return this.port;
+    }
+
+    public void setPort() {
+        this.port = this.server.getPort();
+    }
+
+    public String getHost() {
+        return this.host;
     }
 
     public void blockUntilShutdown() throws InterruptedException {

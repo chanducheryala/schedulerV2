@@ -17,10 +17,12 @@ public class WorkerHeartBeat {
 
     private final TaskManagerStub stub;
     private final ScheduledExecutorService scheduler;
+    private final WorkerGrpcServer workerGrpcServer;
 
-    public WorkerHeartBeat(TaskManagerStub stub) {
+    public WorkerHeartBeat(TaskManagerStub stub, WorkerGrpcServer workerGrpcServer) {
         this.stub = stub;
         this.scheduler = Executors.newSingleThreadScheduledExecutor();
+        this.workerGrpcServer = workerGrpcServer;
     }
 
     public void periodicHeartBeat() {
@@ -28,7 +30,7 @@ public class WorkerHeartBeat {
             logger.info("Starting periodic heartbeat...");
             scheduler.scheduleAtFixedRate(this::sendHeartBeat, INITIAL_HEART_BEAT_DELAY, HEART_BEAT_INTERVAL, TimeUnit.SECONDS);
         } catch (Exception ex) {
-            logger.error("Error while scheduling heartbeat", ex);
+            logger.error("Error while scheduling heartbeat {}", ex.getStackTrace());
         }
     }
 
@@ -42,6 +44,8 @@ public class WorkerHeartBeat {
             logger.info("Sending heartbeat...");
             HeartBeatRequest request = HeartBeatRequest.newBuilder()
                     .setWorkerId(WORKER_ID)
+                    .setHostname(workerGrpcServer.getHost())
+                    .setPort(String.valueOf(workerGrpcServer.getPort()))
                     .build();
 
             HeartBeatResponse response = stub.getStub().sendHeartBeat(request);
@@ -52,7 +56,7 @@ public class WorkerHeartBeat {
                 logger.warn("Coordinator did not acknowledge heartbeat, workerId: {}", WORKER_ID);
             }
         } catch (Exception ex) {
-            logger.error("Error while sending heartbeat for workerId {}", WORKER_ID, ex);
+            logger.error("Error while sending heartbeat for workerId {} ", ex.getStackTrace());
         }
     }
 
