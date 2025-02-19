@@ -1,1 +1,1 @@
-Devlopment in progress.. 30% completed
+Devlopment in progress.. 75% completed
