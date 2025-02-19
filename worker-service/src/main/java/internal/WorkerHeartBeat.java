@@ -11,35 +11,53 @@ import java.util.concurrent.TimeUnit;
 
 public class WorkerHeartBeat {
     private static final Logger logger = LoggerFactory.getLogger(WorkerHeartBeat.class);
-    private static final int WORKERS = 10;
     private static final int WORKER_ID = 1;
     private static final int INITIAL_HEART_BEAT_DELAY = 5;
     private static final int HEART_BEAT_INTERVAL = 10;
 
-    private TaskManagerStub stub;
+    private final TaskManagerStub stub;
+    private final ScheduledExecutorService scheduler;
 
+    public WorkerHeartBeat(TaskManagerStub stub) {
+        this.stub = stub;
+        this.scheduler = Executors.newSingleThreadScheduledExecutor();
+    }
 
-    public Runnable periodicHeartBeat = () -> {
-       try {
-           ScheduledExecutorService ticker = Executors.newScheduledThreadPool(1);
-           ticker.scheduleAtFixedRate(this::sendHeartBeat, 5, 10, TimeUnit.SECONDS);
-       } catch (Exception ex) {
-
-       }
-    };
-
-
-    private void sendHeartBeat() {
+    public void periodicHeartBeat() {
         try {
-            HeartBeatRequest.Builder heartBeatRequest = HeartBeatRequest.newBuilder()
-                    .setWorkerId(WORKER_ID);
-            HeartBeatResponse response = stub.getStub().sendHeartBeat(heartBeatRequest.build());
-            if(response.getAcknowledge()) {
-                logger.info("Coordinator server acknowledged Worker server heartBeat, workerId : {}", WORKER_ID);
-            }
+            logger.info("Starting periodic heartbeat...");
+            scheduler.scheduleAtFixedRate(this::sendHeartBeat, INITIAL_HEART_BEAT_DELAY, HEART_BEAT_INTERVAL, TimeUnit.SECONDS);
         } catch (Exception ex) {
-            logger.error("error while sending heartbeat of workerId {}", WORKER_ID);
+            logger.error("Error while scheduling heartbeat", ex);
         }
     }
 
+    private void sendHeartBeat() {
+        try {
+            if (stub.getStub() == null) {
+                logger.error("TaskManagerStub is not connected. Skipping heartbeat.");
+                return;
+            }
+
+            logger.info("Sending heartbeat...");
+            HeartBeatRequest request = HeartBeatRequest.newBuilder()
+                    .setWorkerId(WORKER_ID)
+                    .build();
+
+            HeartBeatResponse response = stub.getStub().sendHeartBeat(request);
+
+            if (response.getAcknowledge()) {
+                logger.info("Coordinator acknowledged heartbeat, workerId: {}", WORKER_ID);
+            } else {
+                logger.warn("Coordinator did not acknowledge heartbeat, workerId: {}", WORKER_ID);
+            }
+        } catch (Exception ex) {
+            logger.error("Error while sending heartbeat for workerId {}", WORKER_ID, ex);
+        }
+    }
+
+    public void stopHeartBeat() {
+        scheduler.shutdown();
+        logger.info("Heartbeat scheduler stopped.");
+    }
 }

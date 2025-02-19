@@ -11,7 +11,6 @@ public class TaskManagerStub {
     private static final String HOSTNAME = "127.0.0.1";
     private static final int TASK_MANAGER_PORT = 9090;
 
-
     private TaskManagerServiceGrpc.TaskManagerServiceBlockingStub stub;
 
     public TaskManagerStub() {};
@@ -23,6 +22,7 @@ public class TaskManagerStub {
                     .usePlaintext()
                     .build();
             this.stub = TaskManagerServiceGrpc.newBlockingStub(channel);
+            logger.info("stub : {}", this.stub);
         } catch (Exception ex) {
             logger.error("error while getting task manager stub {}", ex.getStackTrace());
         }
